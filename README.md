@@ -1,6 +1,6 @@
 # VHDL language support in Atom
 
-Adds syntax highlighting and snippets to Prolog files in Atom.
+Adds syntax highlighting and snippets to Verilog files in Atom.
 
 Originally [converted](http://atom.io/docs/latest/converting-a-text-mate-bundle)
 from the [vhdl.tmbundle](https://github.com/bpadalino/VHDL.tmbundle).
