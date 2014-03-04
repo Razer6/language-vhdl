@@ -1,8 +1,7 @@
 {
   "name": "language-vhdl",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "VHDL language support in Atom",
-  "repository": "https://github.com/Razer6/language-vhdl",
   "repository": {
     "type": "git",
     "url": "https://github.com/Razer6/language-vhdl"
@@ -14,6 +13,5 @@
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
