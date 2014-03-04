@@ -1,0 +1,4 @@
+'.source.vhdl':
+  'editor':
+    'increaseIndentPattern': '\\b(begin|is|port|elsif|else|loop|generate|then)$'
+    'decreaseIndentPattern': '^\\s*(elsif|else|end)\\b'
