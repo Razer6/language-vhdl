@@ -29,6 +29,9 @@
   'if':
     'prefix': 'if'
     'body': 'if ${1:expression} then\n\t$0\nend if;'
+  'if generate':
+    'prefix': 'ifg'
+    'body': '${1:identifier} : if ${2:i} generate\n\t$0\nend generate; -- ${1:identifier}'
   'package':
     'prefix': 'pack'
     'body': 'package $1 is\n\t$0\nend package; -- $1 '
