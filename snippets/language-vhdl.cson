@@ -34,7 +34,7 @@
     'body': '${1:identifier} : if ${2:i} generate\n\t$0\nend generate; -- ${1:identifier}'
   'package':
     'prefix': 'pack'
-    'body': 'package $1 is\n\t$0\nend package; -- $1 '
+    'body': 'package $1 is\n\t$0\nend package; -- $1'
   'process':
     'prefix': 'pro'
     'body': '${1:identifier} : process(${2:sensitivity_list})\nbegin\n\t$0\nend process; -- ${1:identifier}'
