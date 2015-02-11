@@ -8,7 +8,9 @@ from the [vhdl.tmbundle](https://github.com/bpadalino/VHDL.tmbundle).
 Contributions are greatly appreciated. Please fork this repository and open a
 pull request to add snippets, make grammar tweaks, etc.
 
-##Version
+## Version
+* `0.7.0`
+  * Fix block comments
 * `0.6.0`
   * New if generate snippet
   * Remove redundant identifier comments at the end of blocks
