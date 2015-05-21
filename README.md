@@ -9,6 +9,8 @@ Contributions are greatly appreciated. Please fork this repository and open a
 pull request to add snippets, make grammar tweaks, etc.
 
 ## Version
+* `0.7.1`
+  * Rename scoped properties to fix deprecated Package.loadSettings call
 * `0.7.0`
   * Fix block comments
 * `0.6.0`
