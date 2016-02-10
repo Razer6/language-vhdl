@@ -216,7 +216,7 @@
             'name': 'invalid.illegal.invalid.identifier.vhdl'
           '6':
             'name': 'keyword.language.vhdl'
-        'end': '(?x)\r\n\t\t\t\t\t\t# The word end $1\r\n\t\t\t\t\t\t\\b((?:end))\\s+\r\n\r\n\t\t\t\t\t\t# The word component $3 or illegal word $4\r\n\t\t\t\t\t\t(((?i:component\\b))|(.+?))(?=\\s*|;)\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t# Optional identifier $7 or illegal mismatched $8\r\n\t\t\t\t\t\t(\\s+((\\3)|(.+?)))?(?=\\s*;)\r\n\t\t\t\t\t'
+        'end': '(?x)\r\n\t\t\t\t\t\t# The word end $1\r\n\t\t\t\t\t\t\\b((?i:end))\\s+\r\n\r\n\t\t\t\t\t\t# The word component $3 or illegal word $4\r\n\t\t\t\t\t\t(((?i:component\\b))|(.+?))(?=\\s*|;)\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t# Optional identifier $7 or illegal mismatched $8\r\n\t\t\t\t\t\t(\\s+((\\3)|(.+?)))?(?=\\s*;)\r\n\t\t\t\t\t'
         'endCaptures':
           '1':
             'name': 'keyword.language.vhdl'
