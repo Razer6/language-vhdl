@@ -1,10 +1,10 @@
 '.source.vhdl':
   'asynchronous process':
     'prefix': 'apro'
-    'body': '${1:identifier} : process(${2:clock}, ${3:reset})\nbegin\n\tif ${3:reset} = \'1\' then\n\t\t$0\n\telsif rising_edge(${2:clock}) then\n\t\t\n\tend if;\nend process;'
+    'body': '${1:identifier} : process(${2:clock}, ${3:reset})\nbegin\n\tif ${3:reset} = \'1\' then\n\t\t$0\n\telsif rising_edge(${2:clock}) then\n\t\t\n\tend if;\nend process ${1:identifier};'
   'architecture':
     'prefix': 'arch'
-    'body': 'architecture ${1:arch} of $1 is\n\n\tsignal $0\n\nbegin\n\nend architecture;'
+    'body': 'architecture ${2:arch} of $1 is\n\n\tsignal $0\n\nbegin\n\nend architecture ${2:arch};'
   'case':
     'prefix': 'case'
     'body': 'case( ${1:signal_name} ) is\n\n\twhen ${2:IDLE} =>\n\t\t$0\n\n\twhen others =>\n\nend case;'
@@ -16,10 +16,10 @@
     'body': 'elsif ${1:expression} then\n\t$0'
   'entity':
     'prefix': 'ent'
-    'body': 'entity $1 is\n  port (\n\t${0:clock}\n  );\nend entity;'
+    'body': 'entity $1 is\n  port (\n\t${0:clock}\n  );\nend entity $1;'
   'entity architecture':
     'prefix': 'entarch'
-    'body': 'entity $1 is\n  port (\n\t${0:clock}\n  );\nend entity;\n\narchitecture ${2:arch} of $1 is\n\n\n\nbegin\n\n\n\nend architecture;'
+    'body': 'entity $1 is\n  port (\n\t${0:clock}\n  );\nend entity $1;\n\narchitecture ${2:arch} of $1 is\n\n\n\nbegin\n\n\n\nend architecture ${2:arch};'
   'for loop':
     'prefix': 'for'
     'body': '${1:identifier} : for ${2:i} in ${3:0} to ${4:10} loop\n\t$0\nend loop;'
@@ -37,7 +37,7 @@
     'body': 'package $1 is\n\t$0\nend package;'
   'process':
     'prefix': 'pro'
-    'body': '${1:identifier} : process(${2:sensitivity_list})\nbegin\n\t$0\nend process;'
+    'body': '${1:identifier} : process(${2:sensitivity_list})\nbegin\n\t$0\nend process ${1:identifier};'
   'signed downto':
     'prefix': 's'
     'body': 'signed(${1:x} downto ${2:0});$0'
@@ -46,7 +46,7 @@
     'body': 'signed(${1:signal}\'range);$0'
   'synchronous process':
     'prefix': 'spro'
-    'body': '${1:identifier} : process(${2:clock})\nbegin\n\tif rising_edge(${2:clock}) then\n\t\t$0\n\tend if;\nend process;'
+    'body': '${1:identifier} : process(${2:clock})\nbegin\n\tif rising_edge(${2:clock}) then\n\t\t$0\n\tend if;\nend process ${1:identifier};'
   'std_logic_vector downto':
     'prefix': 'slv'
     'body': 'std_logic_vector(${1:x} downto ${2:0});$0'
@@ -61,7 +61,7 @@
     'body': 'unsigned(${1:signal}\'range);$0'
   'vhdl template':
     'prefix': 'vhdl'
-    'body': 'library ieee;\n\tuse ieee.std_logic_1164.all;\n\tuse ieee.numeric_std.all;\n\nentity $1 is\n  port (\n\t${0:clock}\n  );\nend entity;\n\narchitecture ${2:arch} of $1 is\n\nbegin\n\nend architecture;'
+    'body': 'library ieee;\n\tuse ieee.std_logic_1164.all;\n\tuse ieee.numeric_std.all;\n\nentity $1 is\n  port (\n\t${0:clock}\n  );\nend entity $1;\n\narchitecture ${2:arch} of $1 is\n\nbegin\n\nend architecture ${2:arch};'
   'while':
     'prefix': 'while'
     'body': '${1:identifier} : while ${2:expression} loop\n\t$0\nend loop;'
