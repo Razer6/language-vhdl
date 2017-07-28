@@ -1,13 +1,16 @@
 '.source.vhdl':
   'asynchronous process':
     'prefix': 'apro'
-    'body': '${1:identifier} : process(${2:clock}, ${3:reset})\nbegin\n\tif ${3:reset} = \'1\' then\n\t\t$0\n\telsif rising_edge(${2:clock}) then\n\t\t\n\tend if;\nend process;'
+    'body': '${1:identifier} : process(${2:clock}, ${3:reset})\nbegin\n\tif ${3:reset} = \'1\' then\n\t\t$0\n\telsif rising_edge(${2:clock}) then\n\t\t\n\tend if;\nend process; -- end $1'
   'architecture':
     'prefix': 'arch'
-    'body': 'architecture ${1:arch} of $1 is\n\n\tsignal $0\n\nbegin\n\nend architecture;'
+    'body': 'architecture ${1:arch} of $1 is\n\n$2\n\nbegin\n\n$3\n\nend architecture; -- end $1'
   'case':
     'prefix': 'case'
-    'body': 'case( ${1:signal_name} ) is\n\n\twhen ${2:IDLE} =>\n\t\t$0\n\n\twhen others =>\n\nend case;'
+    'body': 'case( ${1:signal_name} ) is\n\n\twhen ${2:IDLE} =>\n\t\t$0\n\n\twhen others =>\n\nend case; -- end case $1'
+  'component':
+    'prefix': 'comp'
+    'body': 'component ${1:component_name} is\n\n\nend component; -- end $1'
   'else':
     'prefix': 'else'
     'body': 'else\n\t$0'
@@ -16,37 +19,76 @@
     'body': 'elsif ${1:expression} then\n\t$0'
   'entity':
     'prefix': 'ent'
-    'body': 'entity $1 is\n  port (\n\t${0:clock}\n  );\nend entity;'
+    'body': 'entity ${1:ent} is\n  port(\n\t\t${0:clock}\n  );\nend entity; -- end $1'
   'entity architecture':
     'prefix': 'entarch'
-    'body': 'entity $1 is\n  port (\n\t${0:clock}\n  );\nend entity;\n\narchitecture ${2:arch} of $1 is\n\n\n\nbegin\n\n\n\nend architecture;'
+    'body': 'entity ${1:ent} is\n  port(\n\t\t${0:clock}\n  );\nend entity; -- end $1\n\narchitecture ${2:arch} of $1 is\n\n$3\n\nbegin\n\n$4\n\nend architecture; -- end $2'
   'for loop':
     'prefix': 'for'
-    'body': '${1:identifier} : for ${2:i} in ${3:0} to ${4:10} loop\n\t$0\nend loop;'
+    'body': '${1:identifier} : for ${2:i} in ${3:0} to ${4:10} loop\n\t$0\nend loop;  -- end for $1'
   'for generate':
     'prefix': 'forg'
-    'body': '${1:identifier} : for ${2:i} in ${3:x} to ${4:y} generate\n\t$0\nend generate;'
+    'body': '${1:identifier} : for ${2:i} in ${3:x} to ${4:y} generate\n\t$0\nend generate; -- end for generate $1'
   'if':
     'prefix': 'if'
-    'body': 'if ${1:expression} then\n\t$0\nend if;'
+    'body': 'if ${1:expression} then\n\t$0\nend if; -- end if $1'
   'if generate':
     'prefix': 'ifg'
-    'body': '${1:identifier} : if ${2:i} generate\n\t$0\nend generate;'
+    'body': '${1:identifier} : if ${2:i} generate\n\t$0\nend generate; -- end if generate $1'
+  'input std_logic':
+    'prefix': 'isl'
+    'body': '$1 : in  std_logic;$0'
+  'input std_logic_vector downto':
+    'prefix': 'islv'
+    'body': '$1 : in  std_logic_vector(${2:x} downto ${3:0});$0'
+  'integer':
+    'prefix': 'int'
+    'body': '$1 : integer := ${2:2}$3'
+  'generic entity architecture':
+    'prefix': 'gentarch'
+    'body': 'entity ${1:ent} is\n\tgeneric();\n\tport(\n\t${0:clock}\n  );\nend entity; -- end $1\n\narchitecture ${2:arch} of $1 is\n\n\n\nbegin\n\n\n\nend architecture; -- end $2'
+  'generic port map':
+    'prefix': 'gm'
+    'body': 'generic map($1)\nport map($2);'
+  'library':
+    'prefix': 'libs'
+    'body': 'library ieee;\nuse ieee.std_logic_1164.all;\nuse ieee.numeric_std.all;\nuse work.all;'
+  'others':
+    'prefix': 'oth'
+    'body': '(others => \'${0:0}\');'
+  'output std_logic':
+    'prefix': 'osl'
+    'body': '$1 : out std_logic;$0'
+  'output std_logic_vector downto':
+    'prefix': 'oslv'
+    'body': '$1 : out std_logic_vector(${2:x} downto ${3:0});$0'
   'package':
     'prefix': 'pack'
     'body': 'package $1 is\n\t$0\nend package;'
+  'port map':
+    'prefix': 'pm'
+    'body': 'port map($1);'
   'process':
-    'prefix': 'pro'
-    'body': '${1:identifier} : process(${2:sensitivity_list})\nbegin\n\t$0\nend process;'
+    'prefix': 'proc'
+    'body': '${1:identifier} : process(${2:sensitivity_list})\nbegin\n\t$0\nend process; -- end $1'
+  'signal std_logic':
+    'prefix': 'sigsl'
+    'body': 'signal $1 : std_logic;$0'
+  'signal std_logic_vector':
+    'prefix': 'sigslv'
+    'body': 'signal $1 : std_logic_vector(${2:x} downto ${3:0});$0'
   'signed downto':
-    'prefix': 's'
+    'prefix': 'signd'
     'body': 'signed(${1:x} downto ${2:0});$0'
   'signed range':
-    'prefix': 'sr'
+    'prefix': 'signr'
     'body': 'signed(${1:signal}\'range);$0'
   'synchronous process':
     'prefix': 'spro'
-    'body': '${1:identifier} : process(${2:clock})\nbegin\n\tif rising_edge(${2:clock}) then\n\t\t$0\n\tend if;\nend process;'
+    'body': '${1:identifier} : process(${2:clock})\nbegin\n\tif rising_edge(${2:clock}) then\n\t\t$0\n\tend if;\nend process; -- end $1'
+  'std_logic':
+    'prefix': 'sl'
+    'body': 'std_logic;'
   'std_logic_vector downto':
     'prefix': 'slv'
     'body': 'std_logic_vector(${1:x} downto ${2:0});$0'
@@ -54,14 +96,20 @@
     'prefix': 'slvr'
     'body': 'std_logic_vector(${1:signal}\'range);$0'
   'unsigned downto':
-    'prefix': 'u'
+    'prefix': 'unsd'
     'body': 'unsigned(${1:x} downto ${2:0});$0'
   'unsigned range':
-    'prefix': 'ur'
+    'prefix': 'unsr'
     'body': 'unsigned(${1:signal}\'range);$0'
+  'vhdl testbench':
+    'prefix': 'tb'
+    'body': 'library ieee;\nuse ieee.std_logic_1164.all;\nuse ieee.numeric_std.all;\nuse work.all;\n\nentity ${1:tb_ent} is\nend entity;\n\narchitecture ${2:test_ent} of $1 is\n\n$3\n\nbegin\n\n$4\n\nend architecture;'
   'vhdl template':
     'prefix': 'vhdl'
-    'body': 'library ieee;\n\tuse ieee.std_logic_1164.all;\n\tuse ieee.numeric_std.all;\n\nentity $1 is\n  port (\n\t${0:clock}\n  );\nend entity;\n\narchitecture ${2:arch} of $1 is\n\nbegin\n\nend architecture;'
+    'body': 'library ieee;\nuse ieee.std_logic_1164.all;\nuse ieee.numeric_std.all;\nuse work.all;\n\nentity $1 is\n  port(\n\t${0:clock}\n  );\nend entity;\n\narchitecture ${2:arch} of $1 is\n\n$3\n\nbegin\n\n$4\n\nend architecture;'
+  'when':
+    'prefix': 'when'
+    'body': 'when ${1:expression} =>\n\t$0'
   'while':
     'prefix': 'while'
-    'body': '${1:identifier} : while ${2:expression} loop\n\t$0\nend loop;'
+    'body': '${1:identifier} : while ${2:expression} loop\n\t$0\nend loop; -- $2'
